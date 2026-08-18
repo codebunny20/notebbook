@@ -1,5 +1,4 @@
 import customtkinter
-import json
 
 customtkinter.set_appearance_mode("dark")
 customtkinter.set_default_color_theme("blue")
@@ -8,7 +7,6 @@ customtkinter.set_default_color_theme("blue")
 class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
-        self.pin_state = False  # Initialize pin state
         self.title("Notebook")
         self.geometry("500x400")
 
@@ -28,27 +26,6 @@ class App(customtkinter.CTk):
         customtkinter.CTkButton(
             self, text="Open Settings", command=lambda: self.open_window("Settings", "This is the Settings window")
         ).pack(pady=8)
-
-        customtkinter.CTkButton(
-            self, text="Open Journal", command=lambda: self.open_window("Journal", "This is the Journal  window")
-        ).pack(pady=8)
-
-          # Pin button for the main window only
-        customtkinter.CTkButton(
-            self,
-            text="Pin Window",
-            command=self.toggle_pin
-        ).pack(pady=12)
-
-    def toggle_pin(self):
-        self.pin_state = not self.pin_state
-        self.attributes("-topmost", self.pin_state)
-
-        if self.pin_state:
-            self.title("Notebook - Pinned")
-        else:
-            self.title("Notebook")
-
 
     def open_window(self, title, message):
         win = customtkinter.CTkToplevel(self)  # child window
